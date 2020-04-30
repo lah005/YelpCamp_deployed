@@ -22,7 +22,7 @@ var commentRoutes    = require("./routes/comments"),
 //.then => Executes when previous function is completed
 //.catch => Executes when an error appears
 mongoose.connect("mongodb+srv://aloh005:GGzuEF9tCcrANPC9@cluster0-zkoo8.mongodb.net/test?retryWrites=true&w=majority", 
-{useUnifiedTopology:true, useNewUrlParser: true, useCreateIndex: true }).then(function(){
+{useNewUrlParser: true, useCreateIndex: true }).then(function(){
     console.log("Connected to DB!")
 }).catch(function(err){
     console.log("ERROR: " + err.message)
