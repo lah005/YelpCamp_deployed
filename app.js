@@ -18,10 +18,9 @@ var commentRoutes    = require("./routes/comments"),
     campgroundRoutes = require("./routes/campgrounds"),
     indexRoutes      = require("./routes/index")
 
+
 //Using MongoDB Atlas (mongoDB stored online)
-
-
-//In command line: export DATABASEURL=mongodb://localhost:27017/yelp_camp
+//In command line: $env:DATABASEURL = 'mongodb://localhost:27017/yelp_camp' 
 //Heroku setting: For config vars: Key = DATABASEURL, Value = mongodb+srv://aloh005:GGzuEF9tCcrANPC9@cluster0-zkoo8.mongodb.net/test?retryWrites=true&w=majority
 mongoose.connect(process.env.DATABASEURL, {
     useUnifiedTopology:true, 
