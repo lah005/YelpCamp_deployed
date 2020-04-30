@@ -18,7 +18,7 @@ var commentRoutes    = require("./routes/comments"),
     campgroundRoutes = require("./routes/campgrounds"),
     indexRoutes      = require("./routes/index")
 
-
+//Using MongoDB Atlas (mongoDB stored online)
 //.then => Executes when previous function is completed
 //.catch => Executes when an error appears
 mongoose.connect("mongodb+srv://aloh005:GGzuEF9tCcrANPC9@cluster0-zkoo8.mongodb.net/test?retryWrites=true&w=majority", 
