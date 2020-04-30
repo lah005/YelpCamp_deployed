@@ -19,12 +19,16 @@ var commentRoutes    = require("./routes/comments"),
     indexRoutes      = require("./routes/index")
 
 //Using MongoDB Atlas (mongoDB stored online)
-//.then => Executes when previous function is completed
-//.catch => Executes when an error appears
-mongoose.connect("mongodb+srv://aloh005:GGzuEF9tCcrANPC9@cluster0-zkoo8.mongodb.net/test?retryWrites=true&w=majority", 
-{useUnifiedTopology:true, useNewUrlParser: true, useCreateIndex: true }).then(function(){
+
+
+//In command line: export DATABASEURL=mongodb://localhost:27017/yelp_camp
+//Heroku setting: For config vars: Key = DATABASEURL, Value = mongodb+srv://aloh005:GGzuEF9tCcrANPC9@cluster0-zkoo8.mongodb.net/test?retryWrites=true&w=majority
+mongoose.connect(process.env.DATABASEURL, {
+    useUnifiedTopology:true, 
+    useNewUrlParser: true, 
+    useCreateIndex: true }).then(function(){   //.then => Executes when previous function is completed
     console.log("Connected to DB!")
-}).catch(function(err){
+}).catch(function(err){                        //.catch => Executes when an error appears
     console.log("ERROR: " + err.message)
 })
 
@@ -73,6 +77,7 @@ app.use("/campgrounds", campgroundRoutes);
 app.use("/campgrounds/:id/comments", commentRoutes);
 
 
+//process.env. = Automatically selects port/IP
 app.listen(process.env.PORT || 3000, process.env.IP, function(){
     console.log("YELPCAMP STARTED")
 })
