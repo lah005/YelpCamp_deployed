@@ -18,7 +18,17 @@ var commentRoutes    = require("./routes/comments"),
     campgroundRoutes = require("./routes/campgrounds"),
     indexRoutes      = require("./routes/index")
 
-mongoose.connect("mongodb://localhost:27017/yelp_camp", {useUnifiedTopology:true, useNewUrlParser: true })
+
+//.then => Executes when previous function is completed
+//.catch => Executes when an error appears
+mongoose.connect("mongodb+srv://aloh005:GGzuEF9tCcrANPC9@cluster0-zkoo8.mongodb.net/test?retryWrites=true&w=majority", 
+{useUnifiedTopology:true, useNewUrlParser: true, useCreateIndex: true }).then(function(){
+    console.log("Connected to DB!")
+}).catch(function(err){
+    console.log("ERROR: " + err.message)
+})
+
+
 app.use(bodyParser.urlencoded({extended: true}))
 app.set("view engine", "ejs")
 //console.log(_dirname) => directory name of app.js
@@ -63,6 +73,6 @@ app.use("/campgrounds", campgroundRoutes);
 app.use("/campgrounds/:id/comments", commentRoutes);
 
 
-app.listen(3000, function(){
+app.listen(process.env.PORT || 3000, function(){
     console.log("YELPCAMP STARTED AT PORT 3000")
 })
