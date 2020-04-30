@@ -21,28 +21,13 @@ var commentRoutes    = require("./routes/comments"),
 //Using MongoDB Atlas (mongoDB stored online)
 //.then => Executes when previous function is completed
 //.catch => Executes when an error appears
-// mongoose.connect("mongodb+srv://aloh005:GGzuEF9tCcrANPC9@cluster0-zkoo8.mongodb.net/test?retryWrites=true&w=majority", 
-// {useUnifiedTopology:true, useNewUrlParser: true, useCreateIndex: true }).then(function(){
-//     console.log("Connected to DB!")
-// }).catch(function(err){
-//     console.log("ERROR: " + err.message)
-// })
+mongoose.connect("mongodb+srv://aloh005:GGzuEF9tCcrANPC9@cluster0-zkoo8.mongodb.net/test?retryWrites=true&w=majority", 
+{useUnifiedTopology:true, useNewUrlParser: true, useCreateIndex: true }).then(function(){
+    console.log("Connected to DB!")
+}).catch(function(err){
+    console.log("ERROR: " + err.message)
+})
 
-
-const db = process.env.MONGODB_URL;
-
-const connectDB = async () => {
-  try {
-    await mongoose.connect(db, {
-      useUnifiedTopology: true,
-      useNewUrlParser: true
-    });
-    console.log("MongoDB is Connected...");
-  } catch (err) {
-    console.error(err.message);
-    process.exit(1);
-  }
-};
 
 app.use(bodyParser.urlencoded({extended: true}))
 app.set("view engine", "ejs")
@@ -88,6 +73,6 @@ app.use("/campgrounds", campgroundRoutes);
 app.use("/campgrounds/:id/comments", commentRoutes);
 
 
-app.listen(process.env.PORT || 3000, function(){
+app.listen(process.env.PORT || 3000, process.env.IP, function(){
     console.log("YELPCAMP STARTED")
 })
