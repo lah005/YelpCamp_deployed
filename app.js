@@ -22,7 +22,8 @@ var commentRoutes    = require("./routes/comments"),
 //Using MongoDB Atlas (mongoDB stored online)
 //In command line: $env:DATABASEURL = 'mongodb://localhost:27017/yelp_camp' 
 //Heroku setting: For config vars: Key = DATABASEURL, Value = mongodb+srv://aloh005:GGzuEF9tCcrANPC9@cluster0-zkoo8.mongodb.net/test?retryWrites=true&w=majority
-mongoose.connect(process.env.DATABASEURL, {
+var url = process.env.DATABASEURL || 'mongodb://localhost:27017/yelp_camp'
+mongoose.connect(url, {
     useUnifiedTopology:true, 
     useNewUrlParser: true, 
     useCreateIndex: true }).then(function(){   //.then => Executes when previous function is completed

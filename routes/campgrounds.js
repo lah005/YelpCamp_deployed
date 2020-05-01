@@ -49,8 +49,10 @@ router.post("/", middleware.isLoggedIn, function(req,res){
 router.get("/:id", function(req,res){
     //Populate is so that comments can be viewed (if not it'll just be an ObjectID: check mongo > campgrounds )
     Campground.findById(req.params.id).populate("comments").exec(function(err, foundCampground){
-        if(err) {
-            console.log(err)
+        //foundCampground can be null
+        if(err || !foundCampground) {
+            req.flash("error", "Campground not found!")
+            res.redirect("/campgrounds")
         } else {
             res.render("campgrounds/show", {campground:foundCampground})
         }
